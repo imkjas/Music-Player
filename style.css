@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  font-family: Poppins, sans-serif;
+}
 html {
   font-size: 16px;
-}
-body {
-  font-family: Poppins, sans-serif;
 }
 .player {
   height: 95vh;
@@ -191,4 +191,142 @@ i.fa-step-backward {
 }
 .stroke:nth-child(71) {
   animation-delay: 0s;
+}
+
+.hidden {
+  display: none;
+}
+.song-list-container {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  width: 250px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+.song-item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid gray;
+}
+.song-item img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.song-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+/* Scrollable playlist */
+.song-list {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Custom scrollbar styling */
+.song-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.song-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.song-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+.song-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Modal Styling */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  width: 300px;
+  text-align: center;
+  position: relative;
+  max-height: 50vh; /* Prevents modal from being too long */
+  overflow: hidden;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Notification Styling */
+#notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: green;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.wrapper button {
+  background-color: transparent;
+  font-family: Poppins;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.form-group {
+  font-size: 1.2rem;
+}
+
+.form-group input,
+#manageSongsModal button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  border: none;
+}
+
+#manageSongsModal button:hover {
+  background: rgba(255, 255, 255, 0.5);
 }

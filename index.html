@@ -58,6 +58,49 @@
                 <span class="stroke"></span>
                 <span class="stroke"></span>
             </div>
+            <div class="settings">
+                <button onclick="toggleSongList()">Show Playlist</button>
+                <button onclick="toggleManageSongs()">Manage Songs</button>
+                
+            </div>
+        </div>
+
+    </div>
+    <!-- Playlist Modal -->
+    <div class="modal hidden" id="playlistModal">
+        <!-- Notification Message -->
+        <div id="notification" class="hidden"></div>
+
+        <div class="modal-content">
+            <span class="close" onclick="toggleSongList()">&times;</span>
+            <h2>Playlist</h2>
+            <div class="song-list"></div>
+        </div>
+    </div>
+
+    <!-- Manage Songs Modal -->
+    <div id="manageSongsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="toggleManageSongs()">&times;</span>
+            <h2>Manage Songs</h2>
+
+            <div class="form-group">
+                <label for="song-artist">Artist:</label>
+                <input type="text" id="song-artist">
+            </div>
+
+            <div class="form-group">
+                <label for="cover-upload">Upload Cover Image:</label>
+                <input type="file" id="cover-upload" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="song-upload">Upload Song:</label>
+                <input type="file" id="song-upload" accept="audio/*">
+            </div>
+
+            <button onclick="addSong()">Add Song</button>
+            <button onclick="removeSong()">Remove Current Song</button>
         </div>
     </div>
 </body>

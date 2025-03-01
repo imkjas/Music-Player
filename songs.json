@@ -1,0 +1,68 @@
+[
+  {
+    "img": "music/cover.jpg",
+    "name": "Brutal",
+    "artist": "Olivia Rodrigo",
+    "music": "music/01 - brutal.mp3"
+  },
+  {
+    "img": "music/cover.jpg",
+    "name": "Traitor",
+    "artist": "Olivia Rodrigo",
+    "music": "music/02 - traitor.mp3"
+  },
+  {
+    "img": "music/cover2.jpg",
+    "name": "Drivers License",
+    "artist": "Olivia Rodrigo",
+    "music": "music/03 - drivers license.mp3"
+  },
+  {
+    "img": "music/cover.jpg",
+    "name": "1 step forward, 3 steps back",
+    "artist": "Olivia Rodrigo",
+    "music": "music/04 - 1 step forward, 3 steps back.mp3"
+  },
+  {
+    "img": "music/cover.jpg",
+    "name": "Deja Vu",
+    "artist": "Olivia Rodrigo",
+    "music": "music/05 - deja vu.mp3"
+  },
+  {
+    "img": "music/cover2.jpg",
+    "name": "Good 4 U",
+    "artist": "Olivia Rodrigo",
+    "music": "music/06 - good 4 u.mp3"
+  },
+  {
+    "img": "music/cover.jpg",
+    "name": "Enough for you",
+    "artist": "Olivia Rodrigo",
+    "music": "music/07 - enough for you.mp3"
+  },
+  {
+    "img": "music/cover2.jpg",
+    "name": "happier",
+    "artist": "Olivia Rodrigo",
+    "music": "music/08 - happier.mp3"
+  },
+  {
+    "img": "music/cover.jpg",
+    "name": "Jealousy, Jealousy",
+    "artist": "Olivia Rodrigo",
+    "music": "music/09 - jealousy, jealousy.mp3"
+  },
+  {
+    "img": "music/cover2.jpg",
+    "name": "Favorite Crime",
+    "artist": "Olivia Rodrigo",
+    "music": "music/10 - favorite crime.mp3"
+  },
+  {
+    "img": "music/cover2.jpg",
+    "name": "Hope ur Ok",
+    "artist": "Olivia Rodrigo",
+    "music": "music/11 - hope ur ok.mp3"
+  }
+]

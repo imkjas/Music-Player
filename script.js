@@ -21,32 +21,15 @@ let isPlaying = false;
 let isRandom = false;
 let updateTimer;
 
-const music_list = [
-  {
-    img: "music/cover.jpg",
-    name: "02 - Traitor",
-    artist: "Olivia Rodrigo",
-    music: "./music/02 - traitor.mp3",
-  },
-  {
-    img: "music/cover2.jpg",
-    name: "03 - Drivers License",
-    artist: "Olivia Rodrigo",
-    music: "./music/03 - drivers license.mp3",
-  },
-  {
-    img: "music/cover.jpg",
-    name: "05 - deja vu",
-    artist: "Olivia Rodrigo",
-    music: "./music/05 - deja vu.mp3",
-  },
-  {
-    img: "music/cover2.jpg",
-    name: "06 - Good 4 U",
-    artist: "Olivia Rodrigo",
-    music: "./music/06 - good 4 u.mp3",
-  },
-];
+let music_list = [];
+fetch("songs.json")
+  .then((response) => response.json())
+  .then((data) => {
+    music_list = data;
+    loadTrack(track_index);
+    displaySongList();
+  })
+  .catch((error) => console.error("Error loading songs:", error));
 
 loadTrack(track_index);
 
@@ -65,6 +48,120 @@ function loadTrack(track_index) {
   updateTimer = setInterval(setUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
   random_bg_color();
+}
+// Function to show notification messages
+function showNotification(message, color = "green") {
+  let notification = document.getElementById("notification");
+  notification.textContent = message;
+  notification.style.background = color;
+  notification.style.display = "block";
+
+  setTimeout(() => {
+    notification.style.display = "none";
+  }, 3000); // Hide after 3 seconds
+}
+
+// Function to toggle Playlist modal
+function toggleSongList() {
+  let modal = document.getElementById("playlistModal");
+  modal.classList.toggle("hidden");
+  displaySongList(); // Ensure it updates
+}
+
+// Function to toggle Manage Songs modal
+function toggleManageSongs() {
+  let modal = document.getElementById("manageSongsModal");
+  modal.classList.toggle("hidden");
+}
+
+// Function to display song list dynamically
+function displaySongList() {
+  let songListContainer = document.querySelector(".song-list");
+  songListContainer.innerHTML = ""; // Clear previous list
+
+  music_list.forEach((song, index) => {
+    let songItem = document.createElement("div");
+    songItem.classList.add("song-item");
+    songItem.innerHTML = `
+          <img src="${song.img}" alt="${song.name}" class="song-thumb">
+          <div class="song-info">
+              <h3>${song.name}</h3>
+              <p>${song.artist}</p>
+          </div>
+      `;
+    songItem.onclick = () => {
+      track_index = index;
+      loadTrack(track_index);
+      playTrack();
+    };
+    songListContainer.appendChild(songItem);
+  });
+}
+
+// Function to extract filename without extension
+function getFileName(file) {
+  return file.name.replace(/\.[^/.]+$/, "");
+}
+// Function to add a new song
+function addSong() {
+  let artist = document.getElementById("song-artist").value;
+  let songInput = document.getElementById("song-upload");
+  let coverInput = document.getElementById("cover-upload");
+
+  let songFile = songInput.files[0];
+  let coverFile = coverInput.files[0];
+
+  if (artist && songFile && coverFile) {
+    let coverURL = URL.createObjectURL(coverFile);
+    let songURL = URL.createObjectURL(songFile);
+    let songName = getFileName(songFile);
+
+    let newSong = {
+      img: coverURL,
+      name: songName, // Extracted from file name
+      artist: artist,
+      music: songURL,
+    };
+
+    music_list.push(newSong);
+    displaySongList();
+    showNotification("Song added successfully!");
+
+    // Clear input fields
+    document.getElementById("song-artist").value = "";
+    document.getElementById("cover-upload").value = "";
+    document.getElementById("song-upload").value = "";
+
+    toggleManageSongs(); // Close modal after adding
+  } else {
+    alert("Please fill in all fields.");
+  }
+}
+
+// Function to remove the currently playing song
+function removeSong() {
+  if (music_list.length > 1) {
+    music_list.splice(track_index, 1);
+    track_index = track_index % music_list.length;
+    loadTrack(track_index);
+    displaySongList();
+    showNotification("Song removed!", "red");
+
+    toggleManageSongs();
+  } else {
+    alert("Cannot remove the last song.");
+  }
+}
+// Save songs to songs.json (Requires a backend)
+function saveSongsToJSON() {
+  fetch("/save-songs", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(music_list),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log("Songs saved:", data))
+    .catch((error) => console.error("Error saving songs:", error));
 }
 
 function random_bg_color() {
@@ -100,6 +197,33 @@ function random_bg_color() {
   var angle = "to right";
   let gradient = "linear-gradient(" + angle + "," + Color1 + "," + Color2 + ")";
   document.body.style.background = gradient;
+  document
+    .getElementById("playlistModal")
+    .querySelector(".modal-content").style.background = gradient;
+  document
+    .getElementById("manageSongsModal")
+    .querySelector(".modal-content").style.background = gradient;
+
+  document.querySelectorAll(".loader .stroke").forEach((el) => {
+    el.style.background = Color1;
+  });
+
+  // Create a new @keyframes rule for dynamic animation
+  let styleSheet = document.getElementById("dynamicStyles");
+  if (!styleSheet) {
+    styleSheet = document.createElement("style");
+    styleSheet.id = "dynamicStyles";
+    document.head.appendChild(styleSheet);
+  }
+  styleSheet.innerHTML = `
+      @keyframes animate {
+        50% { height: 20%; background: ${Color2}; }
+        100% { height: 100%; }
+      }
+      .loader .stroke {
+        background: ${Color1} !important;
+      }
+    `;
 }
 
 function reset() {
