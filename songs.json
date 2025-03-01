@@ -64,5 +64,11 @@
     "name": "Hope ur Ok",
     "artist": "Olivia Rodrigo",
     "music": "music/11 - hope ur ok.mp3"
+  },
+  {
+    "img": "music/cover2.jpg",
+    "name": "Vampire",
+    "artist": "Olivia Rodrigo",
+    "music": "music/12 - vampire.mp3"
   }
 ]

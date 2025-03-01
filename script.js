@@ -46,6 +46,8 @@ function loadTrack(track_index) {
   song_artist.textContent = music_list[track_index].artist;
   now_playing.textContent = track_index + 1 + " of " + music_list.length;
 
+  document.title = `${music_list[track_index].artist} - ${music_list[track_index].name}`;
+  
   updateTimer = setInterval(setUpdate, 1000);
 
   curr_track.removeEventListener("ended", nextTrack);
