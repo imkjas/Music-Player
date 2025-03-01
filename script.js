@@ -20,6 +20,7 @@ let track_index = 0;
 let isPlaying = false;
 let isRandom = false;
 let updateTimer;
+let isRepeat = false;
 
 let music_list = [];
 fetch("songs.json")
@@ -46,10 +47,20 @@ function loadTrack(track_index) {
   now_playing.textContent = track_index + 1 + " of " + music_list.length;
 
   updateTimer = setInterval(setUpdate, 1000);
-  curr_track.addEventListener("ended", nextTrack);
+
+  curr_track.removeEventListener("ended", nextTrack);
+
+  curr_track.addEventListener("ended", function () {
+    if (isRepeat) {
+      playTrack();
+    } else {
+      nextTrack();
+    }
+  });
+
   random_bg_color();
 }
-// Function to show notification messages
+
 function showNotification(message, color = "green") {
   let notification = document.getElementById("notification");
   notification.textContent = message;
@@ -58,26 +69,23 @@ function showNotification(message, color = "green") {
 
   setTimeout(() => {
     notification.style.display = "none";
-  }, 3000); // Hide after 3 seconds
+  }, 3000);
 }
 
-// Function to toggle Playlist modal
 function toggleSongList() {
   let modal = document.getElementById("playlistModal");
   modal.classList.toggle("hidden");
-  displaySongList(); // Ensure it updates
+  displaySongList();
 }
 
-// Function to toggle Manage Songs modal
 function toggleManageSongs() {
   let modal = document.getElementById("manageSongsModal");
   modal.classList.toggle("hidden");
 }
 
-// Function to display song list dynamically
 function displaySongList() {
   let songListContainer = document.querySelector(".song-list");
-  songListContainer.innerHTML = ""; // Clear previous list
+  songListContainer.innerHTML = "";
 
   music_list.forEach((song, index) => {
     let songItem = document.createElement("div");
@@ -98,11 +106,10 @@ function displaySongList() {
   });
 }
 
-// Function to extract filename without extension
 function getFileName(file) {
   return file.name.replace(/\.[^/.]+$/, "");
 }
-// Function to add a new song
+
 function addSong() {
   let artist = document.getElementById("song-artist").value;
   let songInput = document.getElementById("song-upload");
@@ -118,7 +125,7 @@ function addSong() {
 
     let newSong = {
       img: coverURL,
-      name: songName, // Extracted from file name
+      name: songName,
       artist: artist,
       music: songURL,
     };
@@ -127,18 +134,16 @@ function addSong() {
     displaySongList();
     showNotification("Song added successfully!");
 
-    // Clear input fields
     document.getElementById("song-artist").value = "";
     document.getElementById("cover-upload").value = "";
     document.getElementById("song-upload").value = "";
 
-    toggleManageSongs(); // Close modal after adding
+    toggleManageSongs();
   } else {
     alert("Please fill in all fields.");
   }
 }
 
-// Function to remove the currently playing song
 function removeSong() {
   if (music_list.length > 1) {
     music_list.splice(track_index, 1);
@@ -152,7 +157,7 @@ function removeSong() {
     alert("Cannot remove the last song.");
   }
 }
-// Save songs to songs.json (Requires a backend)
+// To be updated to create a database for the songs
 function saveSongsToJSON() {
   fetch("/save-songs", {
     method: "POST",
@@ -208,7 +213,7 @@ function random_bg_color() {
     el.style.background = Color1;
   });
 
-  // Create a new @keyframes rule for dynamic animation
+  // Will create a new @keyframes rule
   let styleSheet = document.getElementById("dynamicStyles");
   if (!styleSheet) {
     styleSheet = document.createElement("style");
@@ -234,14 +239,33 @@ function reset() {
 
 function randomTrack() {
   isRandom = !isRandom;
+  isRepeat = false;
+
+  let randomIcon = document.querySelector(".random-track i");
+  let repeatIcon = document.querySelector(".repeat-track i");
+
   randomIcon.classList.toggle("randomActive", isRandom);
+  repeatIcon.classList.remove("repeatActive");
 }
 
 function repeatTrack() {
-  let current_index = track_index;
-  loadTrack(current_index);
-  playTrack();
+  isRepeat = !isRepeat;
+  isRandom = false;
+
+  let repeatIcon = document.querySelector(".repeat-track i");
+  let randomIcon = document.querySelector(".random-track i");
+
+  repeatIcon.classList.toggle("repeatActive", isRepeat);
+  randomIcon.classList.remove("randomActive");
 }
+
+curr_track.addEventListener("ended", function () {
+  if (isRepeat) {
+    playTrack();
+  } else {
+    nextTrack();
+  }
+});
 
 function playpauseTrack() {
   isPlaying ? pauseTrack() : playTrack();
@@ -264,13 +288,18 @@ function pauseTrack() {
 }
 
 function nextTrack() {
-  if (track_index < music_list.length - 1 && isRandom === false) {
-    track_index += 1;
-  } else if (track_index < music_list.length - 1 && isRandom === true) {
-    let random_index = Number.parseInt(Math.random() * music_list.length);
+  if (isRepeat) {
+    loadTrack(track_index);
+    playTrack();
+  } else if (isRandom) {
+    let random_index = Math.floor(Math.random() * music_list.length);
     track_index = random_index;
   } else {
-    track_index = 0;
+    if (track_index < music_list.length - 1) {
+      track_index += 1;
+    } else {
+      track_index = 0;
+    }
   }
 
   loadTrack(track_index);
@@ -278,10 +307,18 @@ function nextTrack() {
 }
 
 function prevTrack() {
-  if (track_index > 0) {
-    track_index -= 1;
+  if (isRepeat) {
+    loadTrack(track_index);
+    playTrack();
+  } else if (isRandom) {
+    let random_index = Math.floor(Math.random() * music_list.length);
+    track_index = random_index;
   } else {
-    track_index = music_list.length - 1;
+    if (track_index > 0) {
+      track_index -= 1;
+    } else {
+      track_index = music_list.length - 1;
+    }
   }
 
   loadTrack(track_index);
