@@ -327,7 +327,12 @@ i.fa-step-backward {
   justify-content: space-around;
   margin-top: 30px;
 }
-
+.settings button {
+  color: rgba(0, 0, 0, 0.7);
+}
+.settings button:hover {
+  color: rgba(0, 0, 0, 1);
+}
 .form-group {
   font-size: 1.2rem;
 }
