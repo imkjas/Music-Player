@@ -70,5 +70,113 @@
     "name": "Vampire",
     "artist": "Olivia Rodrigo",
     "music": "music/12 - vampire.mp3"
+  },
+  {
+    "img": "music/AAAF_cover.jpg",
+    "name": "Flower (꽃)",
+    "artist": "Chen",
+    "music": "music/Chen/April, and  a Flower/01 - 꽃 Flower.mp3"
+  },
+  {
+    "img": "music/AAAF_cover.jpg",
+    "name": "Beautiful goodbye",
+    "artist": "Chen",
+    "music": "music/Chen/April, and  a Flower/02 - Beautiful goodbye.mp3"
+  },
+  {
+    "img": "music/AAAF_cover.jpg",
+    "name": "Sorry not sorry",
+    "artist": "Chen",
+    "music": "music/Chen/April, and  a Flower/03 - Sorry not sorry.mp3"
+  },
+  {
+    "img": "music/AAAF_cover.jpg",
+    "name": "Love words",
+    "artist": "Chen",
+    "music": "music/Chen/April, and  a Flower/04 - Love words.mp3"
+  },
+  {
+    "img": "music/AAAF_cover.jpg",
+    "name": "I'll be there",
+    "artist": "Chen",
+    "music": "music/Chen/April, and  a Flower/05 - I'll be there.mp3"
+  },
+  {
+    "img": "music/AAAF_cover.jpg",
+    "name": "Portrait of you",
+    "artist": "Chen",
+    "music": "music/Chen/April, and  a Flower/06 - Portrait of you.mp3"
+  },
+  {
+    "img": "music/DND_cover.png",
+    "name": "Shall we",
+    "artist": "Chen",
+    "music": "music/Chen/Dear My Dear/01 - Shall we.mp3"
+  },
+  {
+    "img": "music/DND_cover.png",
+    "name": "My dear",
+    "artist": "Chen",
+    "music": "music/Chen/Dear My Dear/02 - My dear.mp3"
+  },
+  {
+    "img": "music/DND_cover.png",
+    "name": "Amaranth",
+    "artist": "Chen",
+    "music": "music/Chen/Dear My Dear/03 - Amaranth.mp3"
+  },
+  {
+    "img": "music/DND_cover.png",
+    "name": "Hold you tight",
+    "artist": "Chen",
+    "music": "music/Chen/Dear My Dear/04 - Hold you tight.mp3"
+  },
+  {
+    "img": "music/DND_cover.png",
+    "name": "You never know",
+    "artist": "Chen",
+    "music": "music/Chen/Dear My Dear/05 - You never know.mp3"
+  },
+  {
+    "img": "music/DND_cover.png",
+    "name": "Good night",
+    "artist": "Chen",
+    "music": "music/Chen/Dear My Dear/06 - Good night.mp3"
+  },
+  {
+    "img": "music/Baekhyun/Bambi/Bambi_cover.png",
+    "name": "Love Scene",
+    "artist": "Baekhyun",
+    "music": "music/Baekhyun/Bambi/01 - Love Scene.mp3"
+  },
+  {
+    "img": "music/Baekhyun/Bambi/Bambi_cover.png",
+    "name": "Bambi",
+    "artist": "Baekhyun",
+    "music": "music/Baekhyun/Bambi/02 - Bambi.mp3"
+  },
+  {
+    "img": "music/Baekhyun/Bambi/Bambi_cover.png",
+    "name": "All I Got",
+    "artist": "Baekhyun",
+    "music": "music/Baekhyun/Bambi/03 - All I Got.mp3"
+  },
+  {
+    "img": "music/Baekhyun/Bambi/Bambi_cover.png",
+    "name": "Amusement Park",
+    "artist": "Baekhyun",
+    "music": "music/Baekhyun/Bambi/04 - Amusement Park.mp3"
+  },
+  {
+    "img": "music/Baekhyun/Bambi/Bambi_cover.png",
+    "name": "Privacy",
+    "artist": "Baekhyun",
+    "music": "music/Baekhyun/Bambi/05 - Privacy.mp3"
+  },
+  {
+    "img": "music/Baekhyun/Bambi/Bambi_cover.png",
+    "name": "Cry For Love",
+    "artist": "Baekhyun",
+    "music": "music/Baekhyun/Bambi/06 - Cry For Love.mp3"
   }
 ]
